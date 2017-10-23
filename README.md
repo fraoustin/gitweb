@@ -32,7 +32,7 @@ File 00_init.sh
     #!/bin/bash
     REPOS='/var/lib/git/test.git'
     if [ ! -d $REPOS ]; then
-        addrepos ablog
+        addrepos test
         cd $REPOS
         chmod -R g+ws .
         chgrp -R nginx .
