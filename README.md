@@ -12,9 +12,39 @@ load when start image load file in
 - SET_CONTAINER_TIMEZONE (false or true) manage time of container
 - CONTAINER_TIMEZONE timezone of container
 
-## command
+## Command
 
 - addrepos: add repository
 - addauth : add user for git
 - rmrepos : remove repository
 - rmauth : remove user
+
+## Usage
+
+Sample of Dockerfile
+
+    FROM fraoustin/gitweb
+    COPY ./00_init.sh /usr/share/gitweb/docker-entrypoint.pre/00_init.sh
+    RUN chmod +x -R /usr/share/gitweb/docker-entrypoint.pre
+
+File 00_init.sh
+
+    #!/bin/bash
+    REPOS='/var/lib/git/test.git'
+    if [ ! -d $REPOS ]; then
+        addrepos ablog
+        cd $REPOS
+        chmod -R g+ws .
+        chgrp -R nginx .
+    fi
+    addauth $GITUSER $GITPASSWORD
+
+build image mygit
+
+    docker build -t mygit .
+
+run image mygit
+
+    docker run -d -e "CONTAINER_TIMEZONE=Europe/Paris" -e "GITUSER=gituser" -e "GITPASSWORD=gitpassword" --name test -p 80:80 mygit
+
+
