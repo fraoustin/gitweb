@@ -11,6 +11,9 @@ load when start image load file in
 
 - SET_CONTAINER_TIMEZONE (false or true) manage time of container
 - CONTAINER_TIMEZONE timezone of container
+- GITPROJECT
+- GITUSER (default gituser)
+- GITPASSWORD (default gitpassword)
 
 ## Command
 
@@ -19,7 +22,24 @@ load when start image load file in
 - rmrepos : remove repository
 - rmauth : remove user
 
-## Usage
+## Usage direct
+
+run image mygit
+
+    docker run -d -e "CONTAINER_TIMEZONE=Europe/Paris" -e "GITPROJECT=test" --name test -p 80:80 fraoustin/gitweb
+
+user default is gituser and password default is gitpassword
+
+you use http://localhost/ for access gitweb
+
+you can clone project
+
+    git clone http://gituser:gitpassword@localhost/test.git
+
+You can change user and password by variable environment
+
+
+## Usage by Dockerfile
 
 Sample of Dockerfile
 

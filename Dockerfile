@@ -20,11 +20,14 @@ RUN apt-get update && apt-get install -y \
         spawn-fcgi \
     && rm -rf /var/lib/apt/lists/* 
 
-#manage user load fcgiwrap
+# manage user load fcgiwrap
 RUN sed -i "s/www-data/nginx/g" /etc/init.d/fcgiwrap
 
+# manage start container
 RUN mkdir /usr/share/gitweb/docker-entrypoint.pre
 RUN mkdir /usr/share/gitweb/docker-entrypoint.post
+COPY ./src/00_init.sh /usr/share/gitweb/docker-entrypoint.pre/00_init.sh
+RUN chmod +x -R /usr/share/gitweb/docker-entrypoint.pre
 
 # add cmd gitweb
 COPY ./src/cmd/addrepos.sh /usr/bin/addrepos
@@ -35,6 +38,10 @@ RUN chmod +x /usr/bin/addrepos
 RUN chmod +x /usr/bin/addauth
 RUN chmod +x /usr/bin/rmrepos
 RUN chmod +x /usr/bin/rmauth
+
+# manage default value
+ENV GITUSER gituser
+ENV GITPASSWORD gitpassword
 
 VOLUME /var/lib/git
 EXPOSE 80
