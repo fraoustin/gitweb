@@ -1,5 +1,5 @@
 FROM nginx:1.11
-MAINTAINER fraoustin@gmail.com
+LABEL maintainer "fraoustin@gmail.com"
 
 COPY ./src/default.conf /etc/nginx/conf.d/default.conf
 

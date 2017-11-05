@@ -15,6 +15,14 @@ load when start image load file in
 - GITUSER (default gituser)
 - GITPASSWORD (default gitpassword)
 
+## Volume
+
+- /var/lib/git
+
+## Port
+
+- 80 for gitweb
+
 ## Command
 
 - addrepos: add repository
@@ -24,9 +32,9 @@ load when start image load file in
 
 ## Usage direct
 
-run image mygit
+run image fraoustin/gitweb
 
-    docker run -d -e "CONTAINER_TIMEZONE=Europe/Paris" -e "GITPROJECT=test" --name test -p 80:80 fraoustin/gitweb
+    docker run -d -e "CONTAINER_TIMEZONE=Europe/Paris" -e "GITPROJECT=test" -v <localpath>:/var/lib/git --name test -p 80:80 fraoustin/gitweb
 
 user default is gituser and password default is gitpassword
 
@@ -65,6 +73,6 @@ build image mygit
 
 run image mygit
 
-    docker run -d -e "CONTAINER_TIMEZONE=Europe/Paris" -e "GITUSER=gituser" -e "GITPASSWORD=gitpassword" --name test -p 80:80 mygit
+    docker run -d -e "CONTAINER_TIMEZONE=Europe/Paris" -e "GITUSER=gituser" -e "GITPASSWORD=gitpassword" -v <localpath>:/var/lib/git --name test -p 80:80 mygit
 
 
