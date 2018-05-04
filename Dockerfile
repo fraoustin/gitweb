@@ -43,6 +43,10 @@ RUN chmod +x /usr/bin/rmauth
 ENV GITUSER gituser
 ENV GITPASSWORD gitpassword
 
+# add ihm mdl
+ENV IHM no-mdl
+COPY ./src/ihm /mdl-ihm
+
 VOLUME /var/lib/git
 EXPOSE 80
 
