@@ -1,0 +1,33 @@
+.mdl-button--icon {
+    margin-left: 10px !important;
+}
+
+.mdl-list__item-avatar {
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+#original_gitweb {
+    display: none;
+}
+
+
+@media (max-width: 900px) {
+    .view-screen {
+        display: none;
+    }
+    .view-mobile {
+    }
+}
+
+@media (min-width: 900px) {
+    .view-screen {
+    }
+    .view-mobile {
+        display: none;
+    }
+}
