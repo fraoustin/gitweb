@@ -21,14 +21,14 @@ if [ "$1" = 'app' ]; then
     cp /usr/share/gitweb/static/gitweb.css.original /usr/share/gitweb/static/gitweb.css
     if [ "$IHM" = 'mdl' ]; then
         # add IHM
-        cp -R /mdl-ihm/* /usr/share/gitweb/
+        cp -R /mdl-ihm/* /usr/share/gitweb/ihm/
         echo '' >> /etc/gitweb.conf
         echo '# add conf for IHM mdl' >> /etc/gitweb.conf
-        echo '$home_text="hometext.html";' >> /etc/gitweb.conf
-        echo '$site_header="header.html";' >> /etc/gitweb.conf
-        echo '$site_footer="footer.html";' >> /etc/gitweb.conf
-        cat /usr/share/gitweb/headstring.conf >> /etc/gitweb.conf
-        cp /usr/share/gitweb/gitweb.css /usr/share/gitweb/static/gitweb.css
+        echo '$home_text="ihm/hometext.html";' >> /etc/gitweb.conf
+        echo '$site_header="ihm/header.html";' >> /etc/gitweb.conf
+        echo '$site_footer="ihm/footer.html";' >> /etc/gitweb.conf
+        cat /usr/share/gitweb/ihm/headstring.conf >> /etc/gitweb.conf
+        cp /usr/share/gitweb/ihm/gitweb.css /usr/share/gitweb/static/gitweb.css
     fi  
     service fcgiwrap start
     nginx -g "daemon off;"
