@@ -5,7 +5,7 @@
     <header class="mdl-layout__header mdl-layout__header--waterfall"> 
         <div class="mdl-layout__header-row">
             <!-- Title -->
-            <span class="mdl-layout-title" id="currentTitle" >Title</span>
+            <span class="mdl-layout-title" id="currentTitle" ></span>
             <div class="mdl-layout-spacer"></div>
             <!-- Add spacer, to align navigation to the right -->
             <a id="homebtn" href="" class="no-mobile">
@@ -13,14 +13,20 @@
                     <i class="material-icons" role="presentation">home</i>
                 </button>
             </a>
-            <button id="sortbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-                <i class="material-icons" role="presentation">sort</i>
+            <!-- menu footer -->
+            <button id="footerbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                <i class="material-icons" role="presentation">more_vert</i>
             </button>
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect mdl-list" for="footerbtn" id="footermenu">
+            </ul>
             <a id="logOut" href="">
                 <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
                     <i class="material-icons" role="presentation">lock_open</i>
                 </button>
             </a>
+        </div>
+        <div class="mdl-layout__header-row">
+            <div class="no-search mdl-typography--title" id="currentSubTitle">SubTitle</div>
         </div>
     </header>
     <div class="mdl-layout__drawer">
@@ -52,5 +58,5 @@
 
             <ul class="mdl-list" id="listItems">
             </ul>
-            <div id="original_gitwebbbb">
+            <div id="original_gitweb">
 <!-- end header gitweb material design lite -->
