@@ -17,8 +17,11 @@ document.getElementById("currentSubTitle").innerHTML = pathHeader.childNodes[pat
                                                                     .replace(" ","");
 
 
-// bouton home
+// bouton home and homelink
 document.getElementById("homelink").href = document.getElementById("original_gitweb")
+                                                   .getElementsByClassName("page_header")[0]
+                                                   .getElementsByTagName("a")[1].href;
+document.getElementById("homebtn").href = document.getElementById("original_gitweb")
                                                    .getElementsByClassName("page_header")[0]
                                                    .getElementsByTagName("a")[1].href;
 
