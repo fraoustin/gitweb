@@ -10,7 +10,6 @@ function htmlToElement(html) {
 // Title, Subtitle
 var pathHeader = document.getElementById("original_gitweb")
                     .getElementsByClassName("page_header")[0];
-                    console.log(pathHeader.childNodes)
 document.getElementById("currentTitle").appendChild(pathHeader.getElementsByTagName("a")[pathHeader.getElementsByTagName("a").length-1].cloneNode(true));
 document.getElementById("currentSubTitle").innerHTML = pathHeader.childNodes[pathHeader.childNodes.length-1].textContent
                                                                     .replace("/","")
@@ -50,4 +49,130 @@ for (var i = 0; i < listOfItems.length; ++i) {
     
 }
 
+// menu navigation
+var templateMenuNav=`
+<li class="mdl-list__item mdl-navigation__link">
+<a href="specHref">
+    <span class="mdl-list__item-primary-content">
+        <i class="material-icons mdl-list__item-icon">specIcon</i>
+        specLib
+    </span>
+</a>
+</li>`
 
+if (document.getElementById("original_gitweb").getElementsByClassName("page_nav").length > 0){
+    var listOfItems = document.getElementById("original_gitweb")
+                        .getElementsByClassName("page_nav")[0]
+                        .getElementsByTagName("a");
+    var firstMenu = true;
+    for (var i = 0; i < listOfItems.length; ++i) {
+        if (firstMenu && !!listOfItems[i].previousElementSibling && listOfItems[i].previousElementSibling.tagName == "br") {
+            firstMenu = false;
+        }
+        if (firstMenu) {
+            document.getElementById("menuNav").appendChild(
+                htmlToElement(
+                    templateMenuNav.replace("specHref",listOfItems[i].href)
+                                    .replace("specLib",listOfItems[i].textContent)
+                                    .replace("specIcon", "home")
+                )
+            );        
+        }
+    }
+}
+
+
+// manage project_list
+var templateProjectList=`
+<div class="headerElt">
+<ul class="mdl-list">
+specList
+</ul>
+</div>`
+var templateProjectItem=`
+<li class="mdl-list__item mdl-list__item--two-line">
+<span class="mdl-list__item-primary-content">
+  <i class="material-icons mdl-list__item-avatar">place</i>
+  <span>specTitle</span>
+  <span class="mdl-list__item-sub-title">specSubTitle1</span>
+  <span class="mdl-list__item-sub-title">specSubTitle2</span>
+</span>
+<span class="mdl-list__item-secondary-content">
+  <span class="mdl-list__item-secondary-info">Actor</span>
+  <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
+</span>
+</li>`
+
+
+var listOfItems = document.getElementById("original_gitweb")
+                      .getElementsByClassName("project_list");
+
+for (var i = 0; i < listOfItems.length; ++i) {
+    var listOfSubItems = listOfItems[i].getElementsByTagName("tr");
+    var specList = ""
+    for (var j = 1; j < listOfSubItems.length; ++j) {
+        console.log(specList)
+        specList = specList + htmlToElement(
+            templateProjectItem.replace("specTitle",listOfSubItems[j].getElementsByTagName("td")[0].outerHTML)
+                    .replace("specSubTitle1",listOfSubItems[j].getElementsByTagName("td")[1].outerHTML)
+                    .replace("specSubTitle2",listOfSubItems[j].getElementsByTagName("td")[3].outerHTML)
+        ).outerHTML
+    }
+    document.getElementById("content_gitweb").appendChild(
+        htmlToElement(
+            templateProjectList.replace("specList",specList)
+        )
+    )
+}
+
+
+
+// manage projects_list
+var templateProjectsList=`
+<div class="headerElt">
+<ul class="mdl-list">
+specList
+</ul>
+</div>`
+var templateProjectsItem=`
+<li class="mdl-list__item">
+<span class="mdl-list__item-primary-content">
+specLib
+</span>
+</li>`
+
+
+var listOfItems = document.getElementById("original_gitweb")
+                      .getElementsByClassName("projects_list");
+
+for (var i = 0; i < listOfItems.length; ++i) {
+    var listOfSubItems = listOfItems[i].getElementsByTagName("tr");
+    var specList = ""
+    for (var j = 0; j < listOfSubItems.length; ++j) {
+        specList = specList + htmlToElement(
+            templateProjectsItem.replace("specLib",listOfSubItems[j].getElementsByTagName("td")[1].outerHTML)
+        ).outerHTML
+    }
+    document.getElementById("content_gitweb").appendChild(
+        htmlToElement(
+            templateProjectsList.replace("specList",specList)
+        )
+    )
+}
+
+// manage header + table
+var templateHeader=`
+<div class="headerElt">
+<h5 class="mdl-color-text--primary">specLib</h5>
+</div>`
+
+var listOfItems = document.getElementById("original_gitweb")
+                      .getElementsByClassName("header");
+
+for (var i = 0; i < listOfItems.length; ++i) {
+    document.getElementById("content_gitweb").appendChild(
+        htmlToElement(
+            templateHeader.replace("specLib",listOfItems[i].getElementsByTagName("a")[0].outerHTML)
+        )
+    );
+}

@@ -11,6 +11,14 @@ a {
     color: inherit;
 }
 
+.headerElt {
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    width: 100%;
+    background-color: transparent;
+    padding: 8px;
+}
+
+
 #original_gitweb {
     /* display: none; */
 }
