@@ -79,6 +79,14 @@ if (document.getElementById("original_gitweb").getElementsByClassName("page_nav"
             );        
         }
     }
+    var listOfItems = document.getElementById("original_gitweb")
+        .getElementsByClassName("page_nav")[0].getElementsByTagName("br");
+    elt = listOfItems[0].nextSibling;
+    while (elt) {
+        var eltnext = elt.nextSibling;
+        document.getElementById("submenu").appendChild(elt);
+        elt = eltnext;
+    }
 }
 
 
@@ -97,10 +105,6 @@ var templateProjectItem=`
   <span class="mdl-list__item-sub-title">specSubTitle1</span>
   <span class="mdl-list__item-sub-title">specSubTitle2</span>
 </span>
-<span class="mdl-list__item-secondary-content">
-  <span class="mdl-list__item-secondary-info">Actor</span>
-  <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
-</span>
 </li>`
 
 
@@ -111,7 +115,6 @@ for (var i = 0; i < listOfItems.length; ++i) {
     var listOfSubItems = listOfItems[i].getElementsByTagName("tr");
     var specList = ""
     for (var j = 1; j < listOfSubItems.length; ++j) {
-        console.log(specList)
         specList = specList + htmlToElement(
             templateProjectItem.replace("specTitle",listOfSubItems[j].getElementsByTagName("td")[0].outerHTML)
                     .replace("specSubTitle1",listOfSubItems[j].getElementsByTagName("td")[1].outerHTML)
@@ -160,19 +163,34 @@ for (var i = 0; i < listOfItems.length; ++i) {
     )
 }
 
-// manage header + table
+// manage header
 var templateHeader=`
 <div class="headerElt">
 <h5 class="mdl-color-text--primary">specLib</h5>
 </div>`
 
-var listOfItems = document.getElementById("original_gitweb")
-                      .getElementsByClassName("header");
+var listOfItems = document.getElementById("original_gitweb").querySelectorAll(':scope > .header');
 
 for (var i = 0; i < listOfItems.length; ++i) {
-    document.getElementById("content_gitweb").appendChild(
-        htmlToElement(
-            templateHeader.replace("specLib",listOfItems[i].getElementsByTagName("a")[0].outerHTML)
-        )
-    );
+    var item = htmlToElement(
+        templateHeader.replace("specLib",listOfItems[i].getElementsByTagName("a")[0].outerHTML)
+    )
+    var elt = listOfItems[i].nextElementSibling;
+    while (elt && elt.nodeName in{"div":"","table":""} && !(elt.classList.contains("header")) && !(elt.classList.contains("page_footer"))) {
+        var eltnext = elt.nextElementSibling;
+        item.appendChild(elt);
+        elt = eltnext;
+    }   
+    document.getElementById("content_gitweb").appendChild(item);
 }
+
+
+var listOfTags = document.getElementsByClassName("tag");
+for (var i = 0; i < listOfTags.length; ++i) {
+    listOfTags[i].className += " mdl-color-text--accent";
+};
+var listOfTags = document.getElementsByClassName("refs");
+for (var i = 0; i < listOfTags.length; ++i) {
+    listOfTags[i].className += " mdl-color-text--primary-dark";
+};
+
