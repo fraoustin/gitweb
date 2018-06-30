@@ -1,0 +1,61 @@
+<!-- header gitweb material design lite -->
+<!-- Always shows a header, even in smaller screens. -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+    <!-- waterfall for second row hidden if scroll-->
+    <header class="mdl-layout__header mdl-layout__header--waterfall"> 
+        <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title" id="currentTitle" ></span>
+            <div class="mdl-layout-spacer"></div>
+            <!-- Add spacer, to align navigation to the right -->
+            <a id="homebtn" href="" class="no-mobile">
+                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                    <i class="material-icons" role="presentation">home</i>
+                </button>
+            </a>
+            <!-- menu footer -->
+            <button id="footerbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                <i class="material-icons" role="presentation">more_vert</i>
+            </button>
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect mdl-list" for="footerbtn" id="footermenu">
+            </ul>
+            <a id="logOut" href="">
+                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                    <i class="material-icons" role="presentation">lock_open</i>
+                </button>
+            </a>
+        </div>
+        <div class="mdl-layout__header-row">
+            <div class="no-search mdl-typography--title" id="currentSubTitle">SubTitle</div>
+        </div>
+    </header>
+    <div class="mdl-layout__drawer">
+        <ul class="mdl-list">
+            <li class="mdl-layout-title mdl-list__item mdl-navigation__link">
+                <span class="mdl-color-text--primary mdl-list__item-primary-content">
+                    <i class="mdl-color-text--primary material-icons mdl-list__item-icon">call_split</i>
+                    GitWeb
+                </span>
+            </li>
+        </ul>
+
+        <!-- menu navigation -->
+        <nav class="mdl-navigation">
+            <ul class="mdl-list " id="menuNav">
+                <li class="mdl-list__item mdl-navigation__link">
+                    <a id="homelink" href="">
+                        <span class="mdl-list__item-primary-content">
+                            <i class="material-icons mdl-list__item-icon">home</i>
+                            Home
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <main class="mdl-layout__content">
+        <div id="content_gitweb">
+            <div id="submenu"></div>
+        </div>
+        <div id="original_gitweb">
+<!-- end header gitweb material design lite -->
