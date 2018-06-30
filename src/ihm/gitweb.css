@@ -1,0 +1,143 @@
+body {
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-size: 16px;
+
+}
+
+.mdl-button--icon {
+    margin-left: 10px !important;
+}
+
+.mdl-list__item-avatar {
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.headerElt {
+    width: 100%;
+    background-color: transparent;
+    padding: 8px;
+}
+
+table, .headerElt > div {
+    width: 99%;
+    background-color: transparent;
+    padding: 20px;
+}
+
+table td.link { 
+    text-align: right;
+}
+span {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#submenu {
+    text-align: right;
+}
+#original_gitweb {
+    display: none;
+}
+
+/* Diffs
+---------------------------------------------------------------------------- */
+
+div.diff.to_file a.path,
+div.diff.to_file {
+  color: #007000;
+}
+
+div.diff.from_file a.path,
+div.diff.from_file {
+  color: #aa0000;
+}
+
+.patch .header {
+  margin: 0;
+}
+
+.patchset {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.chunk_header {
+  background: #eaf2f5;
+  color: #999;
+}
+
+.rem {
+  background: #ffdddd;
+}
+.rem .marked {
+  background: #ffaaaa;
+}
+.add {
+  background: #ddffdd;
+}
+.add .marked {
+  background: #7dff7d;
+}
+
+.extended_header {
+  width: 99.5%;
+}
+
+div.chunk_block {
+  overflow: hidden;
+}
+
+div.chunk_block div.old {
+  float: left;
+  width: 50%;
+  overflow: hidden;
+  border-right: 5px solid #EAF2F5;
+}
+
+div.chunk_block.rem,
+div.chunk_block.add {
+  background: transparent;
+}
+
+div.chunk_block div.old .add,
+div.chunk_block div.old .rem {
+  padding-right: 3px;
+}
+
+div.chunk_block div.new .add,
+div.chunk_block div.new .rem {
+  padding-left: 3px;
+}
+
+div.chunk_block div.new {
+  margin-left: 50%;
+  width: 50%;
+  border-left: 5px solid #EAF2F5;
+}
+
+@media (max-width: 900px) {
+    .view-screen {
+        display: none;
+    }
+    .view-mobile {
+    }
+}
+
+@media (min-width: 900px) {
+    .view-screen {
+    }
+    .view-mobile {
+        display: none;
+    }
+}
+
+@media (max-width: 650px) {
+    td.link {
+        display: none;
+    }
+}

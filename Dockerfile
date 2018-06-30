@@ -43,6 +43,12 @@ RUN chmod +x /usr/bin/rmauth
 ENV GITUSER gituser
 ENV GITPASSWORD gitpassword
 
+# add ihm mdl
+ENV IHM no-mdl
+COPY ./src/ihm /mdl-ihm
+RUN cp /usr/share/gitweb/static/gitweb.css /usr/share/gitweb/static/gitweb.css.original
+RUN mkdir /usr/share/gitweb/ihm
+
 VOLUME /var/lib/git
 EXPOSE 80
 
