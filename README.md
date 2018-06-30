@@ -14,6 +14,7 @@ load when start image load file in
 - GITPROJECT
 - GITUSER (default gituser)
 - GITPASSWORD (default gitpassword)
+- IHM (default "")
 
 ## Volume
 
@@ -75,4 +76,14 @@ run image mygit
 
     docker run -d -e "CONTAINER_TIMEZONE=Europe/Paris" -e "GITUSER=gituser" -e "GITPASSWORD=gitpassword" -v <localpath>:/var/lib/git --name test -p 80:80 mygit
 
+
+
+
+## IHM material design
+
+If you want use a new design for ihm, you can use IHM variable
+
+- IHM = mdl
+
+    docker run -d -e "CONTAINER_TIMEZONE=Europe/Paris" -e "IHM=mdl" -e "GITPROJECT=test" -v <localpath>:/var/lib/git --name test -p 80:80 fraoustin/gitweb
 
