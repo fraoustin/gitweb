@@ -1,5 +1,4 @@
 #!/bin/bash
-
 if [ ! -z "$GITPROJECT" ]; then
     REPOS='/var/lib/git/'$GITPROJECT'.git'
     if [ ! -d $REPOS ]; then
@@ -8,5 +7,7 @@ if [ ! -z "$GITPROJECT" ]; then
         chmod -R g+ws .
         chgrp -R nginx .
     fi
+fi
+if [ ! -z "$GITUSER" ]; then
     addauth $GITUSER $GITPASSWORD
-fi    
+fi 
