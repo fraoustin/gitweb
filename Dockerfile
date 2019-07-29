@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y \
         gitweb \
         highlight \
         libcgi-pm-perl \
+        mime-support \
         spawn-fcgi \
     && rm -rf /var/lib/apt/lists/* 
 
