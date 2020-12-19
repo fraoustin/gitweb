@@ -13,7 +13,7 @@ usage(){
 
 load(){
 	if [ -f $FPASS ]; then
-  		htpasswd -bD $FPASS $1
+  		htpasswd -D $FPASS $1
 	fi
 }
 
