@@ -17,7 +17,8 @@ load(){
 	fi	
 	htpasswd -b $FPASS $1 $2 
 	if [ "$?" != 0 ] ; then
-  		htpasswd -bp $FPASS $1 $2
+  		htpasswd -D $FPASS $1
+  		printf "$1:$(openssl passwd -apr1 $2)\n" >> $FPASS
 	fi
 }
 
