@@ -13,9 +13,11 @@ usage(){
 
 load(){
 	if [ ! -f $FPASS ]; then
-  		htpasswd -bc $FPASS $1 $2
-	else
-      htpasswd -b $FPASS $1 $2 
+  		touch $FPASS
+	fi	
+	htpasswd -b $FPASS $1 $2 
+	if [ "$?" != 0 ] ; then
+  		htpasswd -bp $FPASS $1 $2
 	fi
 }
 
