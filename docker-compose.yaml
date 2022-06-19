@@ -7,7 +7,7 @@ services:
     gitweb:
         image: fraoustin/gitweb
         build:
-            context: https://github.com/fraoustin/gitweb.git
+            context: .
             dockerfile: Dockerfile
         ports:
             - 80:80
