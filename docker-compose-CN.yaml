@@ -1,0 +1,15 @@
+version: "3"
+
+volumes:
+    gitweb:
+
+services:
+    gitweb:
+        image: fraoustin/gitweb
+        build:
+            context: https://hub.fastgit.xyz/fraoustin/gitweb.git
+            dockerfile: Dockerfile.CN
+        ports:
+            - 80:80
+        volumes:
+            - gitweb:/var/lib/git
