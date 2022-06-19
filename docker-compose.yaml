@@ -9,7 +9,13 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
+        environment:
+            - CONTAINER_TIMEZONE=Europe/Paris
+            - GITUSER=gituser
+            - GITPASSWORD=gitpassword
+            - SET_CONTAINER_TIMEZONE=false
         ports:
             - 80:80
+        restart: always
         volumes:
             - gitweb:/var/lib/git
