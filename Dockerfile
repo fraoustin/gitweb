@@ -51,6 +51,7 @@ RUN cp /usr/share/gitweb/static/gitweb.css /usr/share/gitweb/static/gitweb.css.o
 RUN mkdir /usr/share/gitweb/ihm
 
 VOLUME /var/lib/git
+WORKDIR /var/lib/git
 EXPOSE 80
 
 ENTRYPOINT ["/entrypoint.sh"]

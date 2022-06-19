@@ -13,9 +13,12 @@ usage(){
 
 load(){
 	if [ ! -f $FPASS ]; then
-  		htpasswd -bc $FPASS $1 $2
-	else
-      htpasswd -b $FPASS $1 $2 
+  		touch $FPASS
+	fi	
+	htpasswd -b $FPASS $1 $2 
+	if [ "$?" != 0 ] ; then
+  		htpasswd -D $FPASS $1
+  		printf "$1:$(openssl passwd -apr1 $2)\n" >> $FPASS
 	fi
 }
 
