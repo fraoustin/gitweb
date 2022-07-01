@@ -1,4 +1,4 @@
-FROM nginx:1.21
+FROM nginx:1.23
 LABEL maintainer "fraoustin@gmail.com"
 
 COPY ./src/default.conf /etc/nginx/conf.d/default.conf
