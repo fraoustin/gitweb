@@ -23,7 +23,8 @@ load(){
 		cd $REPOS
 		git init --bare
 		echo "$1" > description
-		chgrp -R nginx $REPOS
+		chmod -R g+ws .
+        chgrp -R nginx .
 		if [ ! -f /opt/gitweb/remote/remotes.txt ]; then
 			exit 0
 		fi
