@@ -29,7 +29,7 @@ load(){
 		fi
 		cp /opt/gitweb/post-receive $REPOS/hooks/post-receive
 		chgrp nginx $REPOS/hooks/post-receive
-		chmod 0755 $REPOS/hooks/post-receive
+		chmod a+x $REPOS/hooks/post-receive
 		while read line
 		do
 			if [ -z "${line}" ];then
