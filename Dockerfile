@@ -50,6 +50,12 @@ COPY ./src/ihm /mdl-ihm
 RUN cp /usr/share/gitweb/static/gitweb.css /usr/share/gitweb/static/gitweb.css.original
 RUN mkdir /usr/share/gitweb/ihm
 
+# force push to upstream
+WORKDIR /opt/gitweb/
+COPY ./src/hooks/post-receive /opt/gitweb/post-receive
+RUN chmod +x /opt/gitweb/post-receive
+ENV FORCEPUSH ""
+
 VOLUME /var/lib/git
 
 WORKDIR /var/lib/git

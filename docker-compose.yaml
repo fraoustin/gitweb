@@ -6,9 +6,17 @@ volumes:
 services:
     gitweb:
         image: fraoustin/gitweb
-        build:
-            context: https://github.com/fraoustin/gitweb.git
-            dockerfile: Dockerfile
+        container_name: gitweb
+        hostname: gitweb-test
+        # build:
+        #     context: https://github.com/fraoustin/gitweb.git
+        #     dockerfile: Dockerfile
+        environment:
+            - FORCEPUSH:""
+            - CONTAINER_TIMEZONE=Europe/Paris
+            - GITUSER=gituser 
+            - GITPASSWORD=gitpassword
+            - GITPROJECT=test
         ports:
             - 80:80
         volumes:

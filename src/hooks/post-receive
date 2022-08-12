@@ -1,0 +1,42 @@
+#!/bin/bash
+# 客户端 git push 触发
+#
+log_info(){
+    echo -e "\033[32m$(date +%Y-%m-%d_%H:%M:%S) - $@\033[0m" 
+}
+log_warn(){
+    echo -e "\033[33m$(date +%Y-%m-%d_%H:%M:%S) - $@\033[0m" 
+}
+log_error(){
+    echo >&2 -e "\033[31m$(date +%Y-%m-%d_%H:%M:%S) - $@\033[0m" 
+}
+log_run(){
+    echo -e "\033[43;34m$@\033[0m"
+    eval $@
+}
+
+#判断是不是远端仓库
+IS_BARE=$(git rev-parse --is-bare-repository)
+if [ -z "$IS_BARE" ]; then
+    log_error "fatal: post-receive: IS_NOT_BARE"
+    exit 1
+fi
+log_warn "========================= deploy start ========================="
+HOSTNAME="$(hostname)"
+log_warn "========================= hostname: ${HOSTNAME}"
+
+git_push(){
+    log_warn "========================= push start"
+    for remote in $(git remote)
+    do
+        log_info "${HOSTNAME} push to ${remote}"
+        log_run git push "${FORCEPUSH:+ -f}" --all ${remote}
+    done
+    log_warn "========================= push end"
+}
+
+
+log_info "try run : git_push"
+git_push
+
+log_warn "========================= deploy end   ========================="

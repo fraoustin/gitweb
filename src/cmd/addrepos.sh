@@ -18,7 +18,9 @@ load(){
 		cd $REPOS
 		git init --bare
 		echo "$1" > description
-		chmod -R 777 $REPOS
+		cp /opt/gitweb/post-receive $REPOS/hooks/post-receive
+		chgrp -R nginx $REPOS
+		chmod 0755 $REPOS/hooks/post-receive
 	fi
 }
 
