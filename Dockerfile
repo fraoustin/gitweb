@@ -1,4 +1,4 @@
-FROM nginx:1.21
+FROM nginx:1.23
 LABEL maintainer "fraoustin@gmail.com"
 
 COPY ./src/default.conf /etc/nginx/conf.d/default.conf
@@ -50,9 +50,17 @@ COPY ./src/ihm /mdl-ihm
 RUN cp /usr/share/gitweb/static/gitweb.css /usr/share/gitweb/static/gitweb.css.original
 RUN mkdir /usr/share/gitweb/ihm
 
-VOLUME /var/lib/git
+# force push to upstream
+WORKDIR /opt/gitweb/
+COPY ./src/hooks/post-receive /opt/gitweb/post-receive
+RUN chmod +x /opt/gitweb/post-receive
+ENV FORCEPUSH ""
 
-WORKDIR /var/lib/git
+VOLUME /opt/gitweb/remote/
+
+VOLUME /var/lib/git/
+
+WORKDIR /var/lib/git/
 
 EXPOSE 80
 

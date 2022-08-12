@@ -6,16 +6,20 @@ volumes:
 services:
     gitweb:
         image: fraoustin/gitweb
-        build:
-            context: .
-            dockerfile: Dockerfile
+        container_name: gitweb
+        hostname: gitweb-test
+        # build:
+        #     context: https://github.com/fraoustin/gitweb.git
+        #     dockerfile: Dockerfile
         environment:
             - CONTAINER_TIMEZONE=Europe/Paris
-            - GITUSER=gituser
+            - GITUSER=gituser 
             - GITPASSWORD=gitpassword
-            - SET_CONTAINER_TIMEZONE=false
+            - GITPROJECT=test
+            - FORCEPUSH=""
         ports:
             - 80:80
         restart: always
         volumes:
-            - gitweb:/var/lib/git
+            - gitweb:/var/lib/git/
+            - /path/to/remote/:/opt/gitweb/remote/

@@ -4,8 +4,6 @@ if [ ! -z "$GITPROJECT" ]; then
     if [ ! -d $REPOS ]; then
         addrepos $GITPROJECT
         cd $REPOS
-        chmod -R g+ws .
-        chgrp -R nginx .
     fi
 fi
 if [ ! -z "$GITUSER" ]; then
