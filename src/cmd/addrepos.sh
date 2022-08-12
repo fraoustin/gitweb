@@ -1,6 +1,11 @@
 #!/bin/bash
 DIR="/var/lib/git/"
- 
+
+log_run(){
+    echo -e "$@"
+    eval $@
+}
+
 error(){ 
     	echo "ERROR : parameters invalid !" >&2 
     	exit 1 
@@ -18,9 +23,21 @@ load(){
 		cd $REPOS
 		git init --bare
 		echo "$1" > description
-		cp /opt/gitweb/post-receive $REPOS/hooks/post-receive
 		chgrp -R nginx $REPOS
+		if [ ! -f /opt/gitweb/remote/remotes.txt ]; then
+			exit 0
+		fi
+		cp /opt/gitweb/post-receive $REPOS/hooks/post-receive
+		chgrp nginx $REPOS/hooks/post-receive
 		chmod 0755 $REPOS/hooks/post-receive
+		while read line
+		do
+			if [ -z "${line}" ];then
+				continue
+			fi
+			# eg: git remote add gitweb-test1 https://gituser:gitpassword@gitweb-test1/test.git
+			log_run git remote add ${line}/$(basename $(pwd))
+		done < /opt/gitweb/remote/remotes.txt
 	fi
 }
 

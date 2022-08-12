@@ -1,0 +1,3 @@
+gitweb-test1       https://gituser:gitpassword@gitweb-test1
+gitweb-test2       https://gituser:gitpassword@gitweb-test2
+gitweb-test3       https://gituser:gitpassword@gitweb-test3

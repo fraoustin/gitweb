@@ -12,12 +12,13 @@ services:
         #     context: https://github.com/fraoustin/gitweb.git
         #     dockerfile: Dockerfile
         environment:
-            - FORCEPUSH:""
             - CONTAINER_TIMEZONE=Europe/Paris
             - GITUSER=gituser 
             - GITPASSWORD=gitpassword
             - GITPROJECT=test
+            - FORCEPUSH=""
         ports:
             - 80:80
         volumes:
-            - gitweb:/var/lib/git
+            - gitweb:/var/lib/git/
+            - /path/to/remote/:/opt/gitweb/remote/

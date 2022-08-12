@@ -56,9 +56,11 @@ COPY ./src/hooks/post-receive /opt/gitweb/post-receive
 RUN chmod +x /opt/gitweb/post-receive
 ENV FORCEPUSH ""
 
-VOLUME /var/lib/git
+VOLUME /opt/gitweb/remote/
 
-WORKDIR /var/lib/git
+VOLUME /var/lib/git/
+
+WORKDIR /var/lib/git/
 
 EXPOSE 80
 
