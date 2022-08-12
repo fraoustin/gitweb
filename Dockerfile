@@ -56,6 +56,9 @@ COPY ./src/hooks/post-receive /opt/gitweb/post-receive
 RUN chmod +x /opt/gitweb/post-receive
 ENV FORCEPUSH ""
 
+# Setting base url via Docker
+ENV URLPATH /
+
 VOLUME /opt/gitweb/remote/
 
 VOLUME /var/lib/git/

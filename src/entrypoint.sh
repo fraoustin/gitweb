@@ -29,7 +29,12 @@ if [ "$1" = 'app' ]; then
         echo '$site_footer="ihm/footer.html";' >> /etc/gitweb.conf
         cat /usr/share/gitweb/ihm/headstring.conf >> /etc/gitweb.conf
         cp /usr/share/gitweb/ihm/gitweb.css /usr/share/gitweb/static/gitweb.css
-    fi  
+    fi
+    if [ -n "${URLPATH}" ]; then
+         sed -n '10p' /etc/nginx/conf.d/default.conf
+         sed -i "10s|.*|     location ${URLPATH} {|" /etc/nginx/conf.d/default.conf
+         sed -n '10p' /etc/nginx/conf.d/default.conf
+    fi
     service fcgiwrap start
     nginx -g "daemon off;"
     /bin/run-parts --verbose --regex '\.(sh)$' "/usr/share/gitweb/docker-entrypoint.post"

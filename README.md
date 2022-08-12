@@ -104,6 +104,10 @@ if don't want force push, **DO NOT** set environment: FORCEPUSH
 - when downstream push
     - gitweb will push to upstreams each: `git push [-f] --all gitweb-test1` ...
 
+## Setting base url via Docker environment
+
+use environment *URLPATH* to set base url 
+
 ## Usage by Dockerfile
 
 Sample of Dockerfile
