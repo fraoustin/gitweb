@@ -27,9 +27,10 @@ load(){
 		if [ ! -f /opt/gitweb/remote/remotes.txt ]; then
 			exit 0
 		fi
-		cp /opt/gitweb/post-receive $REPOS/hooks/post-receive
-		chgrp nginx $REPOS/hooks/post-receive
-		chmod a+x $REPOS/hooks/post-receive
+		log_run cp /opt/gitweb/post-receive $REPOS/hooks/post-receive
+		log_run chgrp nginx $REPOS/hooks/post-receive
+		log_run chmod 0755 $REPOS/hooks/post-receive
+		log_run chmod g+ws $REPOS/hooks/post-receive
 		while read line
 		do
 			if [ -z "${line}" ];then
