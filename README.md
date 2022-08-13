@@ -57,6 +57,13 @@ when fist push
 ```bash
     git push --set-upstream origin master
 ```
+other branch
+```bash
+    git branch --set-upstream-to=<remote>/<branch> <branch>
+
+eg:
+    git branch --set-upstream-to=gitweb/main main
+```
 every next time push
 ```bash
     git push
