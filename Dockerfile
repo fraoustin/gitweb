@@ -43,6 +43,7 @@ RUN chmod +x /usr/bin/rmauth
 # manage default value
 ENV GITUSER gituser
 ENV GITPASSWORD gitpassword
+ENV GITHIGHLIGHT 0
 
 # add ihm mdl
 ENV IHM no-mdl
