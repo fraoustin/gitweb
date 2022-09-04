@@ -1,4 +1,5 @@
-FROM nginx:1.23
+FROM nginx:latest
+
 LABEL maintainer "fraoustin@gmail.com"
 
 COPY ./src/default.conf /etc/nginx/conf.d/default.conf
@@ -9,7 +10,8 @@ RUN chmod +x /entrypoint.sh
 ENV SET_CONTAINER_TIMEZONE false 
 ENV CONTAINER_TIMEZONE "" 
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update \
+        && apt-get install -y \
         apache2-utils \
         fcgiwrap \
         git \
@@ -19,7 +21,8 @@ RUN apt-get update && apt-get install -y \
         libcgi-pm-perl \
         mime-support \
         spawn-fcgi \
-    && rm -rf /var/lib/apt/lists/* 
+    && apt-get autoclean \
+    && rm -rf /var/lib/apt/lists/*
 
 # manage user load fcgiwrap
 RUN sed -i "s/www-data/nginx/g" /etc/init.d/fcgiwrap
