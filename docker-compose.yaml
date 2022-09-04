@@ -3,6 +3,7 @@ version: "3"
 volumes:
     gitweb:
 
+
 services:
     gitweb:
         image: fraoustin/gitweb
@@ -13,10 +14,12 @@ services:
         #     dockerfile: Dockerfile
         environment:
             - CONTAINER_TIMEZONE=Europe/Paris
-            - GITUSER=gituser 
+            - GITUSER=gituser
             - GITPASSWORD=gitpassword
             - GITPROJECT=test
             - FORCEPUSH=""
+            - URLPATH=/
+            - GITHIGHLIGHT=1
         ports:
             - 80:80
         restart: always

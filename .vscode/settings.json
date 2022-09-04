@@ -1,0 +1,8 @@
+{
+    "markdownlint.config": {
+        "default": true,
+        "MD033": {
+            "allowed_elements": ["kbd"]
+        }
+    }
+}
