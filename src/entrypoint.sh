@@ -30,6 +30,11 @@ if [ "$1" = 'app' ]; then
         cat /usr/share/gitweb/ihm/headstring.conf >> /etc/gitweb.conf
         cp /usr/share/gitweb/ihm/gitweb.css /usr/share/gitweb/static/gitweb.css
     fi
+    if [ "$GITHIGHLIGHT" = "1" ]; then
+        echo '' >> /etc/gitweb.conf
+        echo '# enable syntax highlighting' >> /etc/gitweb.conf
+        echo "\$feature{'highlight'}{'default'} = [1];" >> /etc/gitweb.conf
+    fi
     if [ -n "${URLPATH}" ]; then
          sed -n '10p' /etc/nginx/conf.d/default.conf
          sed -i "10s|.*|     location ${URLPATH} {|" /etc/nginx/conf.d/default.conf
