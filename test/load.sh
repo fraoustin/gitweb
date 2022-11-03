@@ -1,7 +1,12 @@
 #!/bin/bash
+set -x 
+
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+
 cd /tmp
-git clone http://gituser:gitpassword@localhost:8080/test.git
-cd test
+git clone http://gituser:gitpassword@gitweb-test3:80/test3.git
+cd test3
 git branch master
 git checkout master
 git commit -m "branch master" --allow-empty
@@ -83,3 +88,7 @@ git commit -m "commit 57" --allow-empty
 git commit -m "commit 58" --allow-empty
 git commit -m "commit 59" --allow-empty
 git push
+
+git remote add gitweb-test2 http://gituser:gitpassword@gitweb-test2:80/path/test.git
+git push --all gitweb-test2
+

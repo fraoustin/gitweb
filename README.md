@@ -15,7 +15,7 @@ load when start image load file in
 - GITUSER (default gituser)
 - GITPASSWORD (default gitpassword)
 - GITHIGHLIGHT (default `0`)
-- IHM (default "")
+- IHM (default "no-mdl")
 - FORCEPUSH ("" or every not blank string) manage force push to upstream when Downstream branch push
 
 ## Volume

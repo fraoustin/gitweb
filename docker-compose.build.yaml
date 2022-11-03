@@ -1,0 +1,21 @@
+version: "3"
+
+volumes:
+    gitweb:
+
+
+services:
+    gitweb:
+        image: ${REGISTRY}${REGISTRY+/}fraoustin/gitweb
+        container_name: gitweb
+        hostname: gitweb-test
+        build:
+            # context: https://github.com/fraoustin/gitweb.git
+            context: .
+            dockerfile: Dockerfile
+
+# e.g
+# linux:        export REGISTRY=docker.io
+# powershell:   $env:registry.your.domain
+# docker compose -f .\docker-compose.build.yaml build
+# docker compose -f .\docker-compose.build.yaml push
