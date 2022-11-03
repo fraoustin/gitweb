@@ -9,7 +9,7 @@ volumes:
 services:
 
     gitweb-test1:
-        image: fraoustin/gitweb:test
+        image: ${IMAGE_NAME}:test
         container_name: gitweb-test1
         hostname: gitweb-test1
         environment:
@@ -25,7 +25,7 @@ services:
             - gitweb-1:/var/lib/git/
 
     gitweb-test2:
-        image: fraoustin/gitweb:test
+        image: ${IMAGE_NAME}:test
         container_name: gitweb-test2
         hostname: gitweb-test2
         environment:
@@ -42,7 +42,7 @@ services:
         links :
             - gitweb-test1
     gitweb-test3:
-        image: fraoustin/gitweb:test
+        image: ${IMAGE_NAME}:test
         container_name: gitweb-test3
         hostname: gitweb-test3
         environment:

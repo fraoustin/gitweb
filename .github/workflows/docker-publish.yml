@@ -37,7 +37,7 @@ jobs:
       # Install the cosign tool except on PR
       # https://github.com/sigstore/cosign-installer
       - name: Install cosign
-        if: github.event_name != 'pull_request'
+        if: ${{ github.event_name != 'pull_request' }}
         uses: sigstore/cosign-installer@7e0881f8fe90b25e305bbf0309761e9314607e25
         with:
           cosign-release: "v1.9.0"
@@ -54,7 +54,7 @@ jobs:
       # Login against a Docker registry except on PR
       # https://github.com/docker/login-action
       - name: Log into registry ${{ env.REGISTRY }}
-        if: github.event_name != 'pull_request'
+        if: ${{ github.event_name != 'pull_request' }}
         uses: docker/login-action@28218f9b04b4f3f62068d7b6ce6ca5b26e35336c
         with:
           registry: ${{ env.REGISTRY }}
@@ -86,6 +86,7 @@ jobs:
 
       - name: Test
         run: |
+          export ${IMAGE_NAME}=${{ env.IMAGE_NAME }}
           docker compose -f ./docker-compose.test.yaml up -d
           sleep 10
           docker exec -t gitweb-test3 chmod +x /opt/gitweb/test/load.sh
