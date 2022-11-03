@@ -1,0 +1,57 @@
+version: "3"
+
+volumes:
+    gitweb-1:
+    gitweb-2:
+    gitweb-3:
+
+
+services:
+
+    gitweb-test1:
+        image: fraoustin/gitweb
+        container_name: gitweb-test1
+        hostname: gitweb-test1
+        environment:
+            - CONTAINER_TIMEZONE=Europe/Paris
+            - GITUSER=gituser
+            - GITPASSWORD=gitpassword
+            - GITPROJECT=test1
+            - URLPATH=/
+            - GITHIGHLIGHT=1
+            - IHM=mdl
+        restart: always
+        volumes:
+            - gitweb-1:/var/lib/git/
+
+    gitweb-test2:
+        image: fraoustin/gitweb
+        container_name: gitweb-test2
+        hostname: gitweb-test2
+        environment:
+            - CONTAINER_TIMEZONE=Europe/Paris
+            - GITUSER=gituser
+            - GITPASSWORD=gitpassword
+            - GITPROJECT=test2
+            - FORCEPUSH="true"
+            - URLPATH=/path/
+        restart: always
+        volumes:
+            - gitweb-2:/var/lib/git/
+            - ./test/:/opt/gitweb/remote/
+
+    gitweb-test3:
+        image: fraoustin/gitweb
+        container_name: gitweb-test3
+        hostname: gitweb-test3
+        environment:
+            - CONTAINER_TIMEZONE=Europe/Paris
+            - GITUSER=gituser
+            - GITPASSWORD=gitpassword
+            - GITPROJECT=test
+            - FORCEPUSH=""
+            - URLPATH=/
+        restart: always
+        volumes:
+            - gitweb-3:/var/lib/git/
+            - ./test/:/opt/gitweb/test/

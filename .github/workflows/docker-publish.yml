@@ -7,11 +7,11 @@ name: Docker
 
 on:
   push:
-    branches: [ "master" , "develop" , "patch-*" ]
+    branches: ["master", "develop", "patch-*"]
     # Publish semver tags as releases.
-    tags: [ 'v*.*.*' ]
+    tags: ["v*.*.*"]
   pull_request:
-    branches: [ "master", "develop" , "patch-*" ]
+    branches: ["master", "develop", "patch-*"]
 
 env:
   # Use docker.io for Docker Hub if empty
@@ -20,10 +20,8 @@ env:
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
 
-
 jobs:
   build:
-
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -42,13 +40,13 @@ jobs:
         if: github.event_name != 'pull_request'
         uses: sigstore/cosign-installer@7e0881f8fe90b25e305bbf0309761e9314607e25
         with:
-          cosign-release: 'v1.9.0'
-          
+          cosign-release: "v1.9.0"
+
       # You may pin to the exact commit or the version.
       # uses: docker/setup-qemu-action@8b122486cedac8393e77aa9734c3528886e4a1a8
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
-        
+
       # Workaround: https://github.com/docker/build-push-action/issues/461
       - name: Setup Docker buildx
         uses: docker/setup-buildx-action@79abd3f86f79a9d68a23c75a09a9a85889262adf
@@ -76,10 +74,26 @@ jobs:
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'master') }}
-            
+
+      - name: Build and export to Docker
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          load: true
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:test
+          cache-from: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache
+          cache-to: type=inline
+
+      - name: Test
+        run: |
+          docker compose -f ./docker-compose.test.yaml up -d
+          docker exec -t gitweb-test3 chmod +x /opt/gitweb/test/load.sh
+          docker exec -t gitweb-test3 /opt/gitweb/test/load.sh
+
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
       - name: Build and push Docker image
+        if: ${{ github.event_name != 'pull_request' }}
         id: build-and-push
         uses: docker/build-push-action@ac9327eae2b366085ac7f6a2d02df8aa8ead720a
         with:

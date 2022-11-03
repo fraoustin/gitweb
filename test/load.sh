@@ -1,6 +1,6 @@
 #!/bin/bash
 cd /tmp
-git clone http://gituser:gitpassword@localhost:8080/test.git
+git clone http://gituser:gitpassword@localhost:80/test.git
 cd test
 git branch master
 git checkout master
@@ -83,3 +83,6 @@ git commit -m "commit 57" --allow-empty
 git commit -m "commit 58" --allow-empty
 git commit -m "commit 59" --allow-empty
 git push
+git add remote gitweb-test2 https://gituser:gitpassword@gitweb-test1:80/path/test2.git
+git push --all gitweb-test2
+
