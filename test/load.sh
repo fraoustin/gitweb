@@ -83,6 +83,6 @@ git commit -m "commit 57" --allow-empty
 git commit -m "commit 58" --allow-empty
 git commit -m "commit 59" --allow-empty
 git push
-git add remote gitweb-test2 https://gituser:gitpassword@gitweb-test1:80/path/test.git
+git add remote gitweb-test2 https://gituser:gitpassword@gitweb-test:80/path/test.git
 git push --all gitweb-test2
 
