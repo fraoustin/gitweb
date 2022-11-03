@@ -1,5 +1,9 @@
 #!/bin/bash
-sed -x 
+set -x 
+
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+
 cd /tmp
 git clone http://gituser:gitpassword@gitweb-test3:80/test3.git
 cd test3
