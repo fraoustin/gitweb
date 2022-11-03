@@ -86,7 +86,6 @@ jobs:
 
       - name: Test
         run: |
-          export ${IMAGE_NAME}=${{ env.IMAGE_NAME }}
           docker compose -f ./docker-compose.test.yaml up -d
           sleep 10
           docker exec -t gitweb-test3 chmod +x /opt/gitweb/test/load.sh
