@@ -1,7 +1,7 @@
 #!/bin/bash
 cd /tmp
 git clone http://gituser:gitpassword@gitweb-test3:80/test3.git
-cd test
+cd test3
 git branch master
 git checkout master
 git commit -m "branch master" --allow-empty
