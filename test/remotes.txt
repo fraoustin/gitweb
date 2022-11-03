@@ -1,1 +1,1 @@
-gitweb-test1       https://gituser:gitpassword@gitweb-test1:80/test1.git
+gitweb-test1       https://gituser:gitpassword@gitweb-test1:80
