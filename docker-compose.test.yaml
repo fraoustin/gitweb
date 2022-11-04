@@ -10,7 +10,7 @@ services:
 
     gitweb-test1:
         build: .
-        image: ${IMAGE_NAME}
+        image: ${IMAGE_NAME}:test
         container_name: gitweb-test1
         hostname: gitweb-test1
         environment:
@@ -28,7 +28,7 @@ services:
             - 8080:80
 
     gitweb-test2:
-        image: ${IMAGE_NAME}
+        image: ${IMAGE_NAME}:test
         container_name: gitweb-test2
         hostname: gitweb-test2
         environment:
@@ -47,7 +47,7 @@ services:
         ports:
             - 8081:80
     gitweb-test3:
-        image: ${IMAGE_NAME}
+        image: ${IMAGE_NAME}:test
         container_name: gitweb-test3
         hostname: gitweb-test3
         environment:
