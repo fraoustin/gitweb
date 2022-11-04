@@ -102,10 +102,10 @@ jobs:
         with:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
-          platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/s390x,linux/386,linux/mips64le,linux/arm/v7,linux/arm/v5
+          platforms: linux/amd64,linux/arm64,linux/386,linux/arm/v7
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache
+          cache-from: type=inline
           cache-to: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache,mode=max
       # Sign the resulting Docker image digest except on PRs.
       # This will only write to the public Rekor transparency log when the Docker
