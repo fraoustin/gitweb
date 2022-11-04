@@ -1,4 +1,4 @@
-FROM nginx:1.23
+FROM nginx:stable
 
 LABEL maintainer "fraoustin@gmail.com"
 
@@ -12,6 +12,7 @@ ENV CONTAINER_TIMEZONE ""
 
 RUN apt-get update \
     && apt-get install -y \
+    bash \
     apache2-utils \
     fcgiwrap \
     git \
