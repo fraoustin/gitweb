@@ -61,7 +61,7 @@ RUN chmod +x /opt/gitweb/post-receive
 ENV FORCEPUSH ""
 
 # Setting base url via Docker
-ENV URLPATH /
+ENV my_uri /
 
 VOLUME /opt/gitweb/remote/
 

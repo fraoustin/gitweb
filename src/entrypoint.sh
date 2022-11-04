@@ -35,9 +35,9 @@ if [ "$1" = 'app' ]; then
         echo '# enable syntax highlighting' >> /etc/gitweb.conf
         echo "\$feature{'highlight'}{'default'} = [1];" >> /etc/gitweb.conf
     fi
-    if [ -n "${URLPATH}" ]; then
+    if [ -n "${my_uri}" ]; then
          sed -n '10p' /etc/nginx/conf.d/default.conf
-         sed -i "10s|.*|     location ${URLPATH} {|" /etc/nginx/conf.d/default.conf
+         sed -i "10s|.*|     location ${my_uri} {|" /etc/nginx/conf.d/default.conf
          sed -n '10p' /etc/nginx/conf.d/default.conf
     fi
     service fcgiwrap start

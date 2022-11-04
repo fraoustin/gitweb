@@ -17,6 +17,7 @@ load when start image load file in
 - GITHIGHLIGHT (default `0`)
 - IHM (default "no-mdl")
 - FORCEPUSH ("" or every not blank string) manage force push to upstream when Downstream branch push
+- my_uri  set base url `/path/to/` `/`
 
 ## Volume
 
@@ -134,7 +135,7 @@ if don't want force push, **DO NOT** set environment: FORCEPUSH
 
 ## Setting base url via Docker environment
 
-use environment *URLPATH* to set base url
+use environment `my_uri` to set base url `/path/to/` `/`
 
 ## Usage by Dockerfile
 
