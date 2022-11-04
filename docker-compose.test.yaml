@@ -37,6 +37,8 @@ services:
             - GITPASSWORD=gitpassword
             - GITPROJECT=test
             - FORCEPUSH="true"
+            # NOT WORK
+            # - my_uri=/path/to/
             - my_uri=/
         restart: always
         volumes:

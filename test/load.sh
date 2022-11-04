@@ -91,7 +91,7 @@ git push
 
 
 # not working mabe /etc/gitweb.conf need change 
-git remote add gitweb-test2 http://gituser:gitpassword@gitweb-test2:80/path/test.git
+# git remote add gitweb-test2 http://gituser:gitpassword@gitweb-test2:80/path/to/test.git
 
 git remote add gitweb-test2 http://gituser:gitpassword@gitweb-test2:80/test.git
 
