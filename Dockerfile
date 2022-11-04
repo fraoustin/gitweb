@@ -1,4 +1,4 @@
-FROM nginx:stable
+FROM nginx:1.23
 
 LABEL maintainer "fraoustin@gmail.com"
 
