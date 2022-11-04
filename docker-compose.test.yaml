@@ -37,7 +37,7 @@ services:
             - GITPASSWORD=gitpassword
             - GITPROJECT=test
             - FORCEPUSH="true"
-            - my_uri=/path/to/
+            - my_uri=/
         restart: always
         volumes:
             - gitweb-2:/var/lib/git/

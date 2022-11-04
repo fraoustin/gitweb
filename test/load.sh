@@ -89,6 +89,11 @@ git commit -m "commit 58" --allow-empty
 git commit -m "commit 59" --allow-empty
 git push
 
+
+# not working mabe /etc/gitweb.conf need change 
 git remote add gitweb-test2 http://gituser:gitpassword@gitweb-test2:80/path/test.git
+
+git remote add gitweb-test2 http://gituser:gitpassword@gitweb-test2:80/test.git
+
 git push --all gitweb-test2
 
