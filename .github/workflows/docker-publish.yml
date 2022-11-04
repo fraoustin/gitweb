@@ -82,8 +82,8 @@ jobs:
           context: .
           load: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:test
-          cache-from: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache
-          cache-to: type=inline
+          # cache-from: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache
+          # cache-to: type=inline
 
       - name: Test
         run: |
@@ -103,12 +103,12 @@ jobs:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
           # platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/s390x,linux/386,linux/mips64le,linux/arm/v7,linux/arm/v5
-          platforms: linux/amd64,linux/arm64,linux/386,linux/arm/v7
+          platforms: linux/386,linux/arm64,linux/amd64
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           no-cache: true
-          cache-from: type=inline
-          cache-to: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache,mode=max
+          # cache-from: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache
+          # cache-to: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache,mode=max
       # Sign the resulting Docker image digest except on PRs.
       # This will only write to the public Rekor transparency log when the Docker
       # repository is public to avoid leaking data.  If you would like to publish
