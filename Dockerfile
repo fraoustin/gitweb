@@ -9,7 +9,7 @@ RUN chmod +x /entrypoint.sh
 
 ENV SET_CONTAINER_TIMEZONE false 
 ENV CONTAINER_TIMEZONE "" 
-
+ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get -qq update 
 RUN apt-get -qq install -y \
     bash \
