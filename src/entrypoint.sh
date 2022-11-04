@@ -1,7 +1,9 @@
 #!/bin/bash
+
+set -x
 set -e
 
-if [ $CONTAINER_TIMEZONE ] &&  [ "$SET_CONTAINER_TIMEZONE" = "false" ]; then
+if [ $CONTAINER_TIMEZONE ] && [ "$SET_CONTAINER_TIMEZONE" = "false" ]; then
     echo ${CONTAINER_TIMEZONE} >/etc/timezone && dpkg-reconfigure -f noninteractive tzdata
     echo "Container timezone set to: $CONTAINER_TIMEZONE"
     export SET_CONTAINER_TIMEZONE=true
@@ -22,27 +24,27 @@ if [ "$1" = 'app' ]; then
     if [ "$IHM" = 'mdl' ]; then
         # add IHM
         cp -R /mdl-ihm/* /usr/share/gitweb/ihm/
-        echo '' >> /etc/gitweb.conf
-        echo '# add conf for IHM mdl' >> /etc/gitweb.conf
-        echo '$home_text="ihm/hometext.html";' >> /etc/gitweb.conf
-        echo '$site_header="ihm/header.html";' >> /etc/gitweb.conf
-        echo '$site_footer="ihm/footer.html";' >> /etc/gitweb.conf
-        cat /usr/share/gitweb/ihm/headstring.conf >> /etc/gitweb.conf
+        echo '' >>/etc/gitweb.conf
+        echo '# add conf for IHM mdl' >>/etc/gitweb.conf
+        echo '$home_text="ihm/hometext.html";' >>/etc/gitweb.conf
+        echo '$site_header="ihm/header.html";' >>/etc/gitweb.conf
+        echo '$site_footer="ihm/footer.html";' >>/etc/gitweb.conf
+        cat /usr/share/gitweb/ihm/headstring.conf >>/etc/gitweb.conf
         cp /usr/share/gitweb/ihm/gitweb.css /usr/share/gitweb/static/gitweb.css
     fi
     if [ "$GITHIGHLIGHT" = "1" ]; then
-        echo '' >> /etc/gitweb.conf
-        echo '# enable syntax highlighting' >> /etc/gitweb.conf
-        echo "\$feature{'highlight'}{'default'} = [1];" >> /etc/gitweb.conf
+        echo '' >>/etc/gitweb.conf
+        echo '# enable syntax highlighting' >>/etc/gitweb.conf
+        echo "\$feature{'highlight'}{'default'} = [1];" >>/etc/gitweb.conf
     fi
     if [ -n "${my_uri}" ]; then
-         sed -n '10p' /etc/nginx/conf.d/default.conf
-         sed -i "10s|.*|     location ${my_uri} {|" /etc/nginx/conf.d/default.conf
-         sed -n '10p' /etc/nginx/conf.d/default.conf
+        sed -n '10p' /etc/nginx/conf.d/default.conf
+        sed -i "10s|.*|     location ${my_uri} {|" /etc/nginx/conf.d/default.conf
+        sed -n '10p' /etc/nginx/conf.d/default.conf
     fi
     service fcgiwrap start
     nginx -g "daemon off;"
     /bin/run-parts --verbose --regex '\.(sh)$' "/usr/share/gitweb/docker-entrypoint.post"
 fi
 
-exec "$@"
+eval "$@"

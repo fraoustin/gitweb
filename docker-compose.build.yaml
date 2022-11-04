@@ -1,4 +1,4 @@
-version: "3"
+version: "3.8"
 
 volumes:
     gitweb:
@@ -6,16 +6,21 @@ volumes:
 
 services:
     gitweb:
-        image: ${REGISTRY}${REGISTRY+/}fraoustin/gitweb
+        image: ${REGISTRY}${REGISTRY+/}fraoustin/gitweb${TAG+:}${TAG}
         container_name: gitweb
         hostname: gitweb-test
         build:
             # context: https://github.com/fraoustin/gitweb.git
             context: .
-            dockerfile: Dockerfile
+            dockerfile: Dockerfile.CN
+            platforms:
+                - "linux/amd64"
+                - "linux/386"
+                - "linux/arm64/v8"
+                - "linux/arm/v7"
 
 # e.g
 # linux:        export REGISTRY=docker.io
-# powershell:   $env:registry.your.domain
+# powershell:   $env:REGISTRY='registry.your.domain'
 # docker compose -f .\docker-compose.build.yaml build
 # docker compose -f .\docker-compose.build.yaml push

@@ -1,5 +1,5 @@
 #!/bin/bash
-set -x 
+set -x
 
 git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
@@ -15,7 +15,7 @@ git branch develop
 git checkout develop
 git commit -m "branch develop" --allow-empty
 git push --set-upstream origin develop
-echo "modif 1" >> README.rst
+echo "modif 1" >>README.rst
 git add README.rst
 git commit -m "modif 1"
 git push
@@ -26,7 +26,7 @@ git push
 git tag V1
 git push origin V1
 git checkout develop
-echo "modif 2" >> README.rst
+echo "modif 2" >>README.rst
 git add README.rst
 git commit -m "modif 2"
 git push
@@ -89,11 +89,9 @@ git commit -m "commit 58" --allow-empty
 git commit -m "commit 59" --allow-empty
 git push
 
-
-# not working mabe /etc/gitweb.conf need change 
+# not working mabe /etc/gitweb.conf need change
 # git remote add gitweb-test2 http://gituser:gitpassword@gitweb-test2:80/path/to/test.git
 
 git remote add gitweb-test2 http://gituser:gitpassword@gitweb-test2:80/test.git
 
 git push --all gitweb-test2
-

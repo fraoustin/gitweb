@@ -136,6 +136,8 @@ if don't want force push, **DO NOT** set environment: FORCEPUSH
 ## Setting base url via Docker environment
 
 use environment `my_uri` to set base url `/path/to/` `/`
+ but not support clone or push
+ PLEASE HELP FIX IT
 
 ## Usage by Dockerfile
 
