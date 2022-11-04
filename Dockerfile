@@ -4,23 +4,23 @@ LABEL maintainer "fraoustin@gmail.com"
 
 COPY ./src/default.conf /etc/nginx/conf.d/default.conf
 
-COPY ./src/entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+COPY ./src/entrypoint.sh /entrypoint.sh 
+RUN chmod +x /entrypoint.sh 
 
 ENV SET_CONTAINER_TIMEZONE false 
 ENV CONTAINER_TIMEZONE "" 
 
 RUN apt-get update \
-        && apt-get install -y \
-        apache2-utils \
-        fcgiwrap \
-        git \
-        git-core \
-        gitweb \
-        highlight \
-        libcgi-pm-perl \
-        mime-support \
-        spawn-fcgi \
+    && apt-get install -y \
+    apache2-utils \
+    fcgiwrap \
+    git \
+    git-core \
+    gitweb \
+    highlight \
+    libcgi-pm-perl \
+    mime-support \
+    spawn-fcgi \
     && apt-get autoclean \
     && rm -rf /var/lib/apt/lists/*
 
