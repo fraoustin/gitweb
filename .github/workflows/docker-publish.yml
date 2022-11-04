@@ -106,6 +106,7 @@ jobs:
           platforms: linux/amd64,linux/arm64,linux/386,linux/arm/v7
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          no-cache: true
           cache-from: type=inline
           cache-to: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache,mode=max
       # Sign the resulting Docker image digest except on PRs.
