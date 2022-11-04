@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -x
+# set -x
 set -e
 
 if [ $CONTAINER_TIMEZONE ] && [ "$SET_CONTAINER_TIMEZONE" = "false" ]; then
