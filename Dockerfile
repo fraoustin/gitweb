@@ -10,8 +10,8 @@ RUN chmod +x /entrypoint.sh
 ENV SET_CONTAINER_TIMEZONE false 
 ENV CONTAINER_TIMEZONE "" 
 
-RUN apt-get update \
-    && apt-get install -y \
+RUN apt-get -qq update 
+RUN apt-get -qq install -y \
     bash \
     apache2-utils \
     fcgiwrap \
@@ -21,9 +21,9 @@ RUN apt-get update \
     highlight \
     libcgi-pm-perl \
     mime-support \
-    spawn-fcgi \
-    && apt-get autoclean \
-    && rm -rf /var/lib/apt/lists/*
+    spawn-fcgi 
+RUN apt-get autoclean 
+RUN rm -rf /var/lib/apt/lists/*
 
 # manage user load fcgiwrap
 RUN sed -i "s/www-data/nginx/g" /etc/init.d/fcgiwrap
