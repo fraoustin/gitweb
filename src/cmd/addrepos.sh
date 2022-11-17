@@ -17,6 +17,7 @@ load(){
   		mkdir $REPOS
 		cd $REPOS
 		git init --bare
+		echo "$1" > description
 		chmod -R 777 $REPOS
 	fi
 }

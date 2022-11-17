@@ -1,4 +1,4 @@
-FROM nginx:1.19
+FROM nginx:1.23
 LABEL maintainer "fraoustin@gmail.com"
 
 COPY ./src/default.conf /etc/nginx/conf.d/default.conf
@@ -51,6 +51,7 @@ RUN cp /usr/share/gitweb/static/gitweb.css /usr/share/gitweb/static/gitweb.css.o
 RUN mkdir /usr/share/gitweb/ihm
 
 VOLUME /var/lib/git
+WORKDIR /var/lib/git
 EXPOSE 80
 
 ENTRYPOINT ["/entrypoint.sh"]
