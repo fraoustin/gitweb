@@ -1,0 +1,23 @@
+version: "3"
+
+volumes:
+    gitweb:
+
+
+services:
+    gitweb:
+        image: fraoustin/gitweb
+        container_name: gitweb
+        hostname: gitweb
+        environment:
+            - SET_CONTAINER_TIMEZONE=true
+            - CONTAINER_TIMEZONE=Europe/Paris
+            - GITPROJECT=test
+            - GITUSER=gituser
+            - GITPASSWORD=gitpassword
+            - IHM=""
+        ports:
+            - 8080:80
+        restart: always
+        volumes:
+            - gitweb:/var/lib/git/

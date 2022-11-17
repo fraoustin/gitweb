@@ -1,4 +1,4 @@
-FROM nginx:1.13
+FROM nginx:1.23
 LABEL maintainer "fraoustin@gmail.com"
 
 COPY ./src/default.conf /etc/nginx/conf.d/default.conf
@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y \
         gitweb \
         highlight \
         libcgi-pm-perl \
+        mime-support \
         spawn-fcgi \
     && rm -rf /var/lib/apt/lists/* 
 
@@ -50,6 +51,7 @@ RUN cp /usr/share/gitweb/static/gitweb.css /usr/share/gitweb/static/gitweb.css.o
 RUN mkdir /usr/share/gitweb/ihm
 
 VOLUME /var/lib/git
+WORKDIR /var/lib/git
 EXPOSE 80
 
 ENTRYPOINT ["/entrypoint.sh"]
