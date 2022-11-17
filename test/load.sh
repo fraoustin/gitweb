@@ -1,4 +1,6 @@
 #!/bin/bash
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
 cd /tmp
 git clone http://gituser:gitpassword@localhost:80/test.git
 cd test
