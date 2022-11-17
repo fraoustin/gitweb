@@ -1,6 +1,6 @@
 #!/bin/bash
 cd /tmp
-git clone http://gituser:gitpassword@localhost:8080/test.git
+git clone http://gituser:gitpassword@localhost:80/test.git
 cd test
 git branch master
 git checkout master
