@@ -85,10 +85,10 @@ jobs:
 
       - name: Test Docker image
         run: |
-          docker run -d  -e "GITPROJECT=test" -v $(pwd)/test:/test --name test ${{ secrets.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:test 
+          docker run -d  -e "GITPROJECT=test" -v $(pwd)/test:/test --name gitweb-test ${{ secrets.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:test 
           sleep 15
-          docker exec -i ${{ secrets.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:test chmod +x /test/load.sh
-          docker exec -i ${{ secrets.REGISTRY_USERNAME }}/${{ env.APP_NAME }}:test /test/load.sh
+          docker exec -i gitweb-test chmod +x /test/load.sh
+          docker exec -i gitweb-test /test/load.sh
 
       - name: Build and push Docker image
         if: github.event_name != 'pull_request'
